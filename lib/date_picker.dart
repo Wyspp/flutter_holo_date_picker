@@ -99,6 +99,9 @@ class DatePicker {
     Color? backgroundColor,
     Color? textColor,
     TextStyle? itemTextStyle,
+    TextStyle? titleTextStyle,
+    ButtonStyle? confirmButtonStyle,
+    ButtonStyle? cancelButtonStyle,
     String? titleText,
     String? confirmText,
     String? cancelText,
@@ -108,14 +111,14 @@ class DatePicker {
     DateTime? _selectedDate = initialDate;
     final List<Widget> listButtonActions = [
       TextButton(
-        style: TextButton.styleFrom(primary: textColor),
+        style: confirmButtonStyle ?? TextButton.styleFrom(primary: textColor),
         child: Text(confirmText ?? "OK"),
         onPressed: () {
           Navigator.pop(context, _selectedDate);
         },
       ),
       TextButton(
-        style: TextButton.styleFrom(primary: textColor),
+        style: cancelButtonStyle ?? TextButton.styleFrom(primary: textColor),
         child: Text(cancelText ?? "Cancel"),
         onPressed: () {
           Navigator.pop(context);
@@ -147,7 +150,7 @@ class DatePicker {
     var datePickerDialog = AlertDialog(
       title: Text(
         titleText ?? "Select Date",
-        style: TextStyle(color: textColor),
+        style: titleTextStyle ?? TextStyle(color: textColor),
       ),
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
       backgroundColor: backgroundColor,
